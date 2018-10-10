@@ -10,19 +10,16 @@ public class TankDrive extends LinearOpMode {
     //private Gyroscope imu;
     private DcMotor motorTest;
     private DcMotor motor2;
+    private DcMotor motor3;
     //private DigitalChannel digitalTouch;
     //private DistanceSensor sensorColorRange;
-    //private Servo servoTest;
 
 
-    @Override
     public void runOpMode() {
         //imu = hardwareMap.get(Gyroscope.class, "imu");
         motorTest = hardwareMap.get(DcMotor.class, "motorTest");
         motor2 = hardwareMap.get(DcMotor.class, "motor2");
-        //digitalTouch = hardwareMap.get(DigitalChannel.class, "digitalTouch");
-        //sensorColorRange = hardwareMap.get(DistanceSensor.class, "sensorColorRange");
-        //servoTest = hardwareMap.get(Servo.class, "servoTest");
+        motor3 = hardwareMap.get(DcMotor.class, "motor3");
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -32,22 +29,37 @@ public class TankDrive extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         double tgtPower = 0;
         double tgtPower2 = 0;
-        while (opModeIsActive()) {
+       while (opModeIsActive()) {
             tgtPower = -this.gamepad1.left_stick_y;
             motorTest.setPower(tgtPower);
+           motor2.setPower(tgtPower);
 
             tgtPower2 = this.gamepad1.right_stick_y;
-            motor2.setPower(tgtPower2);
+            motor3.setPower(tgtPower2);
 
-            while(gamepad1.a){
-                motorTest.setPower(1);
+           while(gamepad1.a){
+                motorTest.setPower(-1);
                 motor2.setPower(-1);
             }
 
             while(gamepad1.dpad_down){
+                motorTest.setPower(1);
+                motor2.setPower(-1);
+            }
+            while(gamepad1.dpad_up){
                 motorTest.setPower(-1);
                 motor2.setPower(1);
             }
+           while (gamepad1.dpad_left) {
+                motorTest.setPower(1);
+                motor2.setPower(1);
+            }
+           while(gamepad1.dpad_right) {
+                motorTest.setPower(-1);
+                motor2.setPower(-1);
+            }
+
+
 
 
 
@@ -65,3 +77,10 @@ public class TankDrive extends LinearOpMode {
         }
     }
 }
+
+
+
+
+/* turn the motor so that the tank treads will roll in the direction we want.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// add more comments describing what each line of code does.
+ */
