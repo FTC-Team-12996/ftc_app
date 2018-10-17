@@ -8,31 +8,31 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.internal.android.dx.rop.type.Prototype;
+
 
 @Autonomous
 public class AutoZone extends LinearOpMode {
-        private DcMotor motorTest;
-        private DcMotor motor2;
-        private DcMotor motor3;
+       // private DcMotor motorTest;
+        //private DcMotor motor2;
+        //private DcMotor motor3;
 
 
 
         @Override
         public void runOpMode() {
 
-            motorTest = hardwareMap.get(DcMotor.class, "motorTest");
-            motor2 = hardwareMap.get(DcMotor.class, "motor2");
-            motor3 = hardwareMap.get(DcMotor.class, "motor3");
+          //  motorTest = hardwareMap.get(DcMotor.class, "motorTest");
+            //motor2 = hardwareMap.get(DcMotor.class, "motor2");
+           // motor3 = hardwareMap.get(DcMotor.class, "motor3");
+IRobot Robot=new Prototype();
 
-
-            telemetry.addData("Status", "Initialized");
-            telemetry.update();
+            //telemetry.addData("Status", "Initialized");
+            //telemetry.update();
             // Wait for the game to start (driver presses PLAY)
             waitForStart();
-            motorTest.setPower(1.0);
-            motor2.setPower(-1.0);
 
-
+Robot.driveForward();
 
 
 
