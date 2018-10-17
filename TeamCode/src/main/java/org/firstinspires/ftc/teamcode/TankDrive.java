@@ -81,6 +81,3 @@ public class TankDrive extends LinearOpMode {
 
 
 
-/* turn the motor so that the tank treads will roll in the direction we want.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// add more comments describing what each line of code does.
- */
