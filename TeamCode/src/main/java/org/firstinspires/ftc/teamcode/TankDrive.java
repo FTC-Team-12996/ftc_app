@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 
@@ -11,6 +12,8 @@ public class TankDrive extends LinearOpMode {
     private DcMotor motorTest;
     private DcMotor motor2;
     private DcMotor motor3;
+    private DcMotor motor4;
+    private Servo servo1;
     //private DigitalChannel digitalTouch;
     //private DistanceSensor sensorColorRange;
 
@@ -20,7 +23,8 @@ public class TankDrive extends LinearOpMode {
         motorTest = hardwareMap.get(DcMotor.class, "motorTest");
         motor2 = hardwareMap.get(DcMotor.class, "motor2");
         motor3 = hardwareMap.get(DcMotor.class, "motor3");
-
+        motor4 = hardwareMap.get(DcMotor.class, "motor4");
+        servo1= hardwareMap.get(Servo.class, "servo1");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
@@ -38,9 +42,11 @@ public class TankDrive extends LinearOpMode {
             motor3.setPower(tgtPower2);
 
            while(gamepad1.a){
-                motorTest.setPower(-1);
-                motor2.setPower(-1);
+                servo1.setPosition(1);
             }
+           while(gamepad1.b){
+               servo1.setPosition(-1);
+           }
 
             while(gamepad1.dpad_down){
                 motorTest.setPower(1);
@@ -58,7 +64,12 @@ public class TankDrive extends LinearOpMode {
                 motorTest.setPower(-1);
                 motor2.setPower(-1);
             }
-
+           while(gamepad1.y) {
+               motor4.setPower(1);
+           }
+           while(gamepad1.x) {
+               motor4.setPower(-1);
+           }
 
 
 
