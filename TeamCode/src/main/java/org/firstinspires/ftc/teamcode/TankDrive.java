@@ -9,10 +9,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class TankDrive extends LinearOpMode {
     //private Gyroscope imu;
-    private DcMotor motorTest;
-    private DcMotor motor2;
-    private DcMotor motor3;
-    private DcMotor motor4;
+    private DcMotor motorRight;
+    private DcMotor motorLeft;
+    private DcMotor collectorMotor;
+    private DcMotor slideMotor;
     private Servo servo1;
     //private DigitalChannel digitalTouch;
     //private DistanceSensor sensorColorRange;
@@ -20,10 +20,10 @@ public class TankDrive extends LinearOpMode {
 
     public void runOpMode() {
         //imu = hardwareMap.get(Gyroscope.class, "imu");
-        motorTest = hardwareMap.get(DcMotor.class, "motorTest");
-        motor2 = hardwareMap.get(DcMotor.class, "motor2");
-        motor3 = hardwareMap.get(DcMotor.class, "motor3");
-        motor4 = hardwareMap.get(DcMotor.class, "motor4");
+        motorRight = hardwareMap.get(DcMotor.class, "motorRight");
+        motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
+        collectorMotor = hardwareMap.get(DcMotor.class, "collectorMotor");
+        slideMotor = hardwareMap.get(DcMotor.class, "slideMotor");
         servo1= hardwareMap.get(Servo.class, "servo1");
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -34,52 +34,63 @@ public class TankDrive extends LinearOpMode {
         double tgtPower = 0;
         double tgtPower2 = 0;
        while (opModeIsActive()) {
-            tgtPower = -this.gamepad1.left_stick_y;
-            motorTest.setPower(tgtPower);
-           motor2.setPower(tgtPower);
+            tgtPower = -this.gamepad2.left_stick_y;
+            motorRight.setPower(tgtPower);
+           motorLeft.setPower(-tgtPower);
 
-            tgtPower2 = this.gamepad1.right_stick_y;
-            motor3.setPower(tgtPower2);
 
-           while(gamepad1.a){
-                servo1.setPosition(1);
+
+            tgtPower2 = this.gamepad2.right_stick_y;
+            collectorMotor.setPower(tgtPower2);
+
+            while(gamepad2.right_stick_button){
+                collectorMotor.setPower(1);
             }
-           while(gamepad1.b){
-               servo1.setPosition(-1);
+            while(gamepad2.left_stick_button){
+                collectorMotor.setPower(-1);
+            }
+
+
+
+           while(gamepad2.y){
+                slideMotor.setPower(0.7);
+            }
+           while(gamepad2.x){
+               slideMotor.setPower(-0.7);
            }
+           while(gamepad2.b){
+               slideMotor.setPower(0);
+           }
+
+
 
             while(gamepad1.dpad_down){
-                motorTest.setPower(1);
-                motor2.setPower(-1);
+                motorLeft.setPower(1);
+                motorRight.setPower(-1);
             }
             while(gamepad1.dpad_up){
-                motorTest.setPower(-1);
-                motor2.setPower(1);
+                motorRight.setPower(-1);
+                motorLeft.setPower(1);
             }
            while (gamepad1.dpad_left) {
-                motorTest.setPower(1);
-                motor2.setPower(1);
+                motorRight.setPower(1);
+                motorLeft.setPower(1);
             }
            while(gamepad1.dpad_right) {
-                motorTest.setPower(-1);
-                motor2.setPower(-1);
+                motorRight.setPower(-1);
+                motorLeft.setPower(-1);
             }
-           while(gamepad1.y) {
-               motor4.setPower(1);
-           }
-           while(gamepad1.x) {
-               motor4.setPower(-1);
-           }
+
 
 
 
 
             telemetry.addData("Target Power", tgtPower);
-            telemetry.addData("motorTest Power", motorTest.getPower());
+            telemetry.addData("motorTest Power", motorRight.getPower());
             //motorTest for tank drive
 
             telemetry.addData("Target Power 2", tgtPower2);
-            telemetry.addData("motor2 Power", motor2.getPower());
+            telemetry.addData("motor2 Power", motorLeft.getPower());
             //motor2 for tank drive
 
             telemetry.addData("Status", "Running");
