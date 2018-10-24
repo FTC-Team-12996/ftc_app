@@ -70,5 +70,4 @@ public class Prototype implements IRobot {
         motorLeft.setPower(0);
         motorRight.setPower(0);
     }
-
 }
