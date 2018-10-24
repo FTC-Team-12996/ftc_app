@@ -21,8 +21,8 @@ public class AutoZone extends LinearOpMode {
 
         //  motorTest = hardwareMap.get(DcMotor.class, "motorTest");
         //motor2 = hardwareMap.get(DcMotor.class, "motor2");
-        motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
-        motorRight = hardwareMap.get(DcMotor.class, "motorRight");
+        motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         IRobot Robot= new Prototype(hardwareMap);
 
         //telemetry.addData("Status", "Initialized");
@@ -37,8 +37,7 @@ public class AutoZone extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            motorLeft.setPower(1);
-
+            Robot.turnLeft(1,1000);
             Robot.driveForward(1, 1000);
 
             telemetry.addData("Status", "Running");
