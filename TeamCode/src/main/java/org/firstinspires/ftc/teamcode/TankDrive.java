@@ -14,7 +14,7 @@ public class TankDrive extends LinearOpMode {
     private DcMotor collectorMotor;
     private DcMotor slideMotor;
     private Servo servo1;
-    
+
 
 
     public void runOpMode() {
