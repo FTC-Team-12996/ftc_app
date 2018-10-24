@@ -37,6 +37,7 @@ public class AutoZone extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+            motorLeft.setPower(1);
 
             Robot.driveForward(1, 1000);
 
