@@ -7,7 +7,15 @@ public class TankBot implements IRobot {
 
     private DcMotor motorRight;
     private DcMotor motorLeft;
+    private DcMotor slideMotor;
 
+    //Bucket
+    private DcMotor collectorMotor;
+
+
+
+    //Encoders
+    int TETRIX_TICKS_PER_REV = 1440;
 
     public TankBot( HardwareMap hardwareMap){
         super();
@@ -15,6 +23,7 @@ public class TankBot implements IRobot {
         motorLeft = hardwareMap.get(DcMotor.class, "motorLeft");
         motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
     }
 
     @Override
@@ -28,6 +37,14 @@ public class TankBot implements IRobot {
         }
         motorRight.setPower(0);
         motorLeft.setPower(0);
+    }
+
+    //Encoders Forwards
+    public void Driveforward(double power) {
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        motorLeft.setPower(0);
+        motorRight.setPower(0);
     }
 
     @Override
@@ -68,6 +85,47 @@ public class TankBot implements IRobot {
         }
         motorRight.setPower(0);
         motorLeft.setPower(0);
+
+    }
+
+    @Override
+    public void EncodeMove(double power, int distance, DcMotor Motor) {
+        //Reset Encoders
+        slideMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        motorRight.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        motorLeft.setMode(DcMotor.RunMode.RESET_ENCODERS);
+
+        //Set Target Position
+        slideMotor.setTargetPosition(distance);
+        motorRight.setTargetPosition(distance);
+        motorLeft.setTargetPosition(distance);
+
+        //Set to RUN_TO_POSITION
+        slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Set drive power
+        Driveforward(power);
+    }
+
+    @Override
+    public void RaiseBucket() {
+
+    }
+
+    @Override
+    public void LowerBucket() {
+
+    }
+
+    @Override
+    public void RaiseHook() {
+
+    }
+
+    @Override
+    public void LowerHook() {
 
     }
 }

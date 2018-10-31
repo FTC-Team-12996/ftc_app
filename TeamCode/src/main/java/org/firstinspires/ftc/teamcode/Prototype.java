@@ -7,11 +7,19 @@ public class Prototype implements IRobot {
 
     private DcMotor motorLeft;
     private DcMotor motorRight;
+    private DcMotor slideMotor;
 
     public Prototype (HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotor.class, "motorleft");
         motorRight = hardwareMap.get(DcMotor.class, "motorright");
+<<<<<<< HEAD
        \
+=======
+        slideMotor = hardwareMap.get(DcMotor.class, "slideMotor");
+        motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        slideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+>>>>>>> 8b3e9a51adf740810ce1daf7b9d256758e7e6eb9
     }
 
     @Override
@@ -24,6 +32,14 @@ public class Prototype implements IRobot {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        motorLeft.setPower(0);
+        motorRight.setPower(0);
+    }
+
+    //Encoders Forwards
+    public void Driveforward(double power) {
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
         motorLeft.setPower(0);
         motorRight.setPower(0);
     }
@@ -68,5 +84,46 @@ public class Prototype implements IRobot {
         }
         motorLeft.setPower(0);
         motorRight.setPower(0);
+    }
+
+    @Override
+    public void EncodeMove(double power, int distance, DcMotor Motor) {
+        //Reset Encoders
+       slideMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
+       motorRight.setMode(DcMotor.RunMode.RESET_ENCODERS);
+       motorLeft.setMode(DcMotor.RunMode.RESET_ENCODERS);
+
+        //Set Target Position
+       slideMotor.setTargetPosition(distance);
+       motorRight.setTargetPosition(distance);
+       motorLeft.setTargetPosition(distance);
+
+        //Set to RUN_TO_POSITION
+       slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+       motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+       motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Set drive power
+       Driveforward(power);
+
+    }
+    @Override
+    public void RaiseBucket() {
+
+    }
+
+    @Override
+    public void LowerBucket() {
+
+    }
+
+    @Override
+    public void RaiseHook() {
+
+    }
+
+    @Override
+    public void LowerHook() {
+
     }
 }
