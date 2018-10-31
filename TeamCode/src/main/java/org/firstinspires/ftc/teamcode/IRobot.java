@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 public interface IRobot {
     public void driveForward(double power, long timeMs);
 
@@ -8,5 +10,15 @@ public interface IRobot {
     public void turnRight(double power, long timeMs);
 
     public void turnLeft(double power, long timeMs);
+
+    public void EncodeMove(double power, int distance, DcMotor Motor);
+
+    public void RaiseBucket();
+
+    public void LowerBucket();
+
+    public void RaiseHook();
+
+    public void LowerHook();
 }
 
