@@ -9,15 +9,22 @@ public class TankBot implements IRobot {
     private DcMotor motorLeft;
     private DcMotor slideMotor;
 
-    //Bucket
-    private DcMotor collectorMotor;
+    //Bucket Raise Motor
+    private DcMotor MoveBucket;
 
-
+    //Raise Hook
+    private DcMotor RaiseHook;
+    private DcMotor LowerHook;
 
     //Encoders
     int TETRIX_TICKS_PER_REV = 1440;
 
+<<<<<<< HEAD
 
+=======
+    boolean BucketRaiseMax = false;
+    boolean HookMax = false;
+>>>>>>> 90e307eeb237caec621958cea997fcaaa9e56b39
 
     public TankBot( HardwareMap hardwareMap){
         super();
@@ -113,21 +120,45 @@ public class TankBot implements IRobot {
 
     @Override
     public void RaiseBucket() {
-
+        if (BucketRaiseMax)
+        {
+           //Do Nothing
+        }
+        else
+        {EncodeMove(1,11115, MoveBucket);}
+        BucketRaiseMax = true;
     }
 
     @Override
     public void LowerBucket() {
-
+        if (BucketRaiseMax = false)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(-1,11115, MoveBucket);}
+        BucketRaiseMax = false;
     }
 
     @Override
     public void RaiseHook() {
-
+        if (HookMax)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(1,2280, RaiseHook);}
+        HookMax = true;
     }
 
     @Override
     public void LowerHook() {
-
+        if (HookMax = false)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(1,2280, RaiseHook);}
+        HookMax = false;
     }
 }

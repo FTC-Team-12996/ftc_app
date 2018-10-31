@@ -9,6 +9,19 @@ public class Prototype implements IRobot {
     private DcMotor motorRight;
     private DcMotor slideMotor;
 
+    //Bucket Raise Motor
+    private DcMotor MoveBucket;
+
+    //Raise Hook
+    private DcMotor RaiseHook;
+    private DcMotor LowerHook;
+
+    //Encoders
+    int TETRIX_TICKS_PER_REV = 1440;
+
+    boolean BucketRaiseMax = false;
+    boolean HookMax = false;
+
     public Prototype (HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotor.class, "motorleft");
         motorRight = hardwareMap.get(DcMotor.class, "motorright");
@@ -16,7 +29,10 @@ public class Prototype implements IRobot {
         motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90e307eeb237caec621958cea997fcaaa9e56b39
     }
 
     @Override
@@ -106,21 +122,45 @@ public class Prototype implements IRobot {
     }
     @Override
     public void RaiseBucket() {
-
+        if (BucketRaiseMax)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(1,11115, MoveBucket);}
+        BucketRaiseMax = true;
     }
 
     @Override
     public void LowerBucket() {
-
+        if (BucketRaiseMax = false)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(-1,11115, MoveBucket);}
+        BucketRaiseMax = false;
     }
 
     @Override
     public void RaiseHook() {
-
+        if (HookMax)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(1,2280, RaiseHook);}
+        HookMax = true;
     }
 
     @Override
     public void LowerHook() {
-
+        if (HookMax = false)
+        {
+            //Do Nothing
+        }
+        else
+        {EncodeMove(1,2280, RaiseHook);}
+        HookMax = false;
     }
 }
