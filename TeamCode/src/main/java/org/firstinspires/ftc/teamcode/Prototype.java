@@ -25,10 +25,14 @@ public class Prototype implements IRobot {
     public Prototype (HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotor.class, "motorleft");
         motorRight = hardwareMap.get(DcMotor.class, "motorright");
+<<<<<<< HEAD
+       \
+=======
         slideMotor = hardwareMap.get(DcMotor.class, "slideMotor");
         motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+>>>>>>> 8b3e9a51adf740810ce1daf7b9d256758e7e6eb9
     }
 
     @Override
