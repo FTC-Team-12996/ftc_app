@@ -11,7 +11,9 @@ public interface IRobot {
 
     public void turnLeft(double power, long timeMs);
 
-    public void EncodeMove(double power, int distance, DcMotor Motor);
+    public void EncodeHookMove(double power, int distance, DcMotor Motor);
+
+    public void EncodeBucketMove(double power, int distance, DcMotor Motor);
 
     public void RaiseBucket();
 
