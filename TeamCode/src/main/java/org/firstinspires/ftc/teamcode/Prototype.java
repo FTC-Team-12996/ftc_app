@@ -29,10 +29,7 @@ public class Prototype implements IRobot {
         motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-<<<<<<< HEAD
 
-=======
->>>>>>> 90e307eeb237caec621958cea997fcaaa9e56b39
     }
 
     @Override

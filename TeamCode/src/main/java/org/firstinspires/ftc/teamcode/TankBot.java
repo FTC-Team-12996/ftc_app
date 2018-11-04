@@ -19,12 +19,8 @@ public class TankBot implements IRobot {
     //Encoders
     int TETRIX_TICKS_PER_REV = 1440;
 
-<<<<<<< HEAD
-
-=======
     boolean BucketRaiseMax = false;
     boolean HookMax = false;
->>>>>>> 90e307eeb237caec621958cea997fcaaa9e56b39
 
     public TankBot( HardwareMap hardwareMap){
         super();
