@@ -14,6 +14,15 @@ public class TankDrive extends LinearOpMode {
     private DcMotor collectorMotor;
     private DcMotor slideMotor;
     private Servo servo1;
+    private DcMotor MoveBucket;
+    private DcMotor RaiseHook;
+    private DcMotor LowerHook;
+
+    //Encoders
+    int TETRIX_TICKS_PER_REV = 1440;
+
+    boolean BucketRaiseMax = false;
+    boolean HookMax = false;
 
 
 
