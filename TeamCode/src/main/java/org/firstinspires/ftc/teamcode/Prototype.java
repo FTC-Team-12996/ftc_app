@@ -46,12 +46,18 @@ public class Prototype implements IRobot {
         motorRight.setPower(0);
     }
 
-    //Encoders Forwards
-    public void Driveforward(double power) {
-        motorLeft.setPower(power);
-        motorRight.setPower(power);
-        motorLeft.setPower(0);
-        motorRight.setPower(0);
+    //Encoders Bucket Forwards
+    public void DriveBucketForward(double power) {
+        MoveBucket.setPower(power);
+        MoveBucket.setPower(0);
+    }
+
+    //Encoders Hook Forwards
+    public void DriveHookForward(double power) {
+        RaiseHook.setPower(power);
+        LowerHook.setPower(power);
+        RaiseHook.setPower(0);
+        LowerHook.setPower(0);
     }
 
     @Override
@@ -96,28 +102,39 @@ public class Prototype implements IRobot {
         motorRight.setPower(0);
     }
 
-    @Override
-    public void EncodeMove(double power, int distance, DcMotor Motor) {
+    public void EncodeBucketMove(double power, int distance, DcMotor Motor) {
         //Reset Encoders
-       slideMotor.setMode(DcMotor.RunMode.RESET_ENCODERS);
-       motorRight.setMode(DcMotor.RunMode.RESET_ENCODERS);
-       motorLeft.setMode(DcMotor.RunMode.RESET_ENCODERS);
-
-        //Set Target Position
-       slideMotor.setTargetPosition(distance);
-       motorRight.setTargetPosition(distance);
-       motorLeft.setTargetPosition(distance);
-
-        //Set to RUN_TO_POSITION
-       slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-       motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-       motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+       MoveBucket.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
         //Set drive power
-       Driveforward(power);
+        DriveBucketForward(power);
+
+        //Set to RUN_TO_POSITION
+       MoveBucket.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Set Target Position
+        MoveBucket.setTargetPosition(distance);
+    }
+
+    public void EncodeHookMove(double power, int distance, DcMotor Motor) {
+        //Reset Encoders
+        RaiseHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        LowerHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
+
+        //Set drive power
+        DriveHookForward(power);
+
+        //Set to RUN_TO_POSITION
+        RaiseHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        LowerHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Set Target Position
+        RaiseHook.setTargetPosition(distance);
+        LowerHook.setTargetPosition(distance);
 
     }
 
+<<<<<<< HEAD
     @Override
     public void RaiseBucket(double power, long timeMs) {
 
@@ -128,6 +145,8 @@ public class Prototype implements IRobot {
 
     }
 
+=======
+>>>>>>> fdca3c2f73a21dfc8039507ca6f7e751e08f1cff
     @Override
     public void RaiseHook(double power, long timeMs) {
 
@@ -145,7 +164,7 @@ public class Prototype implements IRobot {
             //Do Nothing
         }
         else
-        {EncodeMove(1,11115, MoveBucket);}
+        {EncodeBucketMove(1,5760, MoveBucket);}
         BucketRaiseMax = true;
     }
 
@@ -156,7 +175,7 @@ public class Prototype implements IRobot {
             //Do Nothing
         }
         else
-        {EncodeMove(-1,11115, MoveBucket);}
+        {EncodeBucketMove(-1,5760, MoveBucket);}
         BucketRaiseMax = false;
     }
 
@@ -167,7 +186,7 @@ public class Prototype implements IRobot {
             //Do Nothing
         }
         else
-        {EncodeMove(1,2280, RaiseHook);}
+        {EncodeHookMove(1,5760, RaiseHook);}
         HookMax = true;
     }
 
@@ -178,7 +197,7 @@ public class Prototype implements IRobot {
             //Do Nothing
         }
         else
-        {EncodeMove(1,2280, RaiseHook);}
+        {EncodeHookMove(-1,5760, LowerHook);}
         HookMax = false;
     }
 }
