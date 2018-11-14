@@ -45,13 +45,13 @@ public class TankBot implements IRobot {
     }
 
     //Encoders Bucket Forwards
-    public void Driveforward(double power) {
+    public void DriveBucketForward(double power) {
         MoveBucket.setPower(power);
         MoveBucket.setPower(0);
     }
 
     //Encoders Hook Forwards
-    public void DriveForward(double power) {
+    public void DriveHookForward(double power) {
         RaiseHook.setPower(power);
         LowerHook.setPower(power);
         RaiseHook.setPower(0);
@@ -103,14 +103,14 @@ public class TankBot implements IRobot {
         //Reset Encoders
         MoveBucket.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        //Set Target Position
-        MoveBucket.setTargetPosition(distance);
+        //Set drive power
+        DriveBucketForward(power);
 
         //Set to RUN_TO_POSITION
         MoveBucket.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Set drive power
-        Driveforward(power);
+        //Set Target Position
+        MoveBucket.setTargetPosition(distance);
 
     }
 
@@ -119,16 +119,16 @@ public class TankBot implements IRobot {
         RaiseHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
         LowerHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        //Set Target Position
-        RaiseHook.setTargetPosition(distance);
-        LowerHook.setTargetPosition(distance);
+        //Set drive power
+        DriveHookForward(power);
 
         //Set to RUN_TO_POSITION
         RaiseHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         LowerHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Set drive power
-        DriveForward(power);
+        //Set Target Position
+        RaiseHook.setTargetPosition(distance);
+        LowerHook.setTargetPosition(distance);
 
     }
 
