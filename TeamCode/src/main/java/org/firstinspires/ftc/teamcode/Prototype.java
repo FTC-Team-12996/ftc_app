@@ -106,14 +106,15 @@ public class Prototype implements IRobot {
         //Reset Encoders
        MoveBucket.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        //Set drive power
-        DriveBucketForward(power);
+        //Set Target Position
+       MoveBucket.setTargetPosition(distance);
 
         //Set to RUN_TO_POSITION
        MoveBucket.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Set Target Position
-        MoveBucket.setTargetPosition(distance);
+        //Set drive power
+       DriveBucketForward(power);
+
     }
 
     public void EncodeHookMove(double power, int distance, DcMotor Motor) {
@@ -121,16 +122,16 @@ public class Prototype implements IRobot {
         RaiseHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
         LowerHook.setMode(DcMotor.RunMode.RESET_ENCODERS);
 
-        //Set drive power
-        DriveHookForward(power);
+        //Set Target Position
+        RaiseHook.setTargetPosition(distance);
+        LowerHook.setTargetPosition(distance);
 
         //Set to RUN_TO_POSITION
         RaiseHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         LowerHook.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Set Target Position
-        RaiseHook.setTargetPosition(distance);
-        LowerHook.setTargetPosition(distance);
+        //Set drive power
+        DriveHookForward(power);
 
     }
 
