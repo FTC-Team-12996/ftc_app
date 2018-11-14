@@ -13,12 +13,12 @@ public interface IRobot {
 
     public void EncodeMove(double power, int distance, DcMotor Motor);
 
-    public void RaiseBucket();
+    public void RaiseBucket(double power, long timeMs);
 
-    public void LowerBucket();
+    public void LowerBucket(double power, long timeMs );
 
-    public void RaiseHook();
+    public void RaiseHook(double power, long timeMs );
 
-    public void LowerHook();
+    public void LowerHook(double power, long timeMs );
 }
 

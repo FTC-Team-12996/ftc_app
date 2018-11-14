@@ -117,7 +117,28 @@ public class Prototype implements IRobot {
        Driveforward(power);
 
     }
+
     @Override
+    public void RaiseBucket(double power, long timeMs) {
+
+    }
+
+    @Override
+    public void LowerBucket(double power, long timeMs) {
+
+    }
+
+    @Override
+    public void RaiseHook(double power, long timeMs) {
+
+    }
+
+    @Override
+    public void LowerHook(double power, long timeMs) {
+
+    }
+
+
     public void RaiseBucket() {
         if (BucketRaiseMax)
         {
@@ -128,7 +149,7 @@ public class Prototype implements IRobot {
         BucketRaiseMax = true;
     }
 
-    @Override
+
     public void LowerBucket() {
         if (BucketRaiseMax = false)
         {
@@ -139,7 +160,7 @@ public class Prototype implements IRobot {
         BucketRaiseMax = false;
     }
 
-    @Override
+
     public void RaiseHook() {
         if (HookMax)
         {
@@ -150,7 +171,7 @@ public class Prototype implements IRobot {
         HookMax = true;
     }
 
-    @Override
+
     public void LowerHook() {
         if (HookMax = false)
         {
