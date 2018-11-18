@@ -135,7 +135,11 @@ public class Prototype implements IRobot {
 
     }
 
+<<<<<<< HEAD
 
+=======
+    @Override
+>>>>>>> 61559ac8fe106618c6194f79c16f29e78f87927b
     public void RaiseBucket(double power, long timeMs) {
 
     }
